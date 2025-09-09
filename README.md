@@ -27,7 +27,7 @@ Reporte en Power BI que analiza datos de clientes y compras para entender patron
 - Diferencias claras en el gasto según perfil demográfico.  
 
 **Vista previa:**  
-![Dashboard de Marketing](assets/imagenes/resumen.png)  
+![Dashboard de Marketing](resumen.png)  
 
 **Ver más:**  
 ➡️ [Detalle del proyecto](proyectos/marketing_powerbi.md)
