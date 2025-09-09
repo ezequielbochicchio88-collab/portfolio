@@ -1,6 +1,6 @@
 # 🚀 Portfolio de Análisis de Datos
 
-¡Hola! Soy **[Tu Nombre]**, analista de datos especializado en **Power BI, Python y SQL**.  
+¡Hola! Soy Ezequiel, Profesional del Marketing con más de 10 años de trayectoria y experiencia en posiciones de análisis de datos e inteligencia de negocio.
 Este portfolio reúne mis principales proyectos en análisis y visualización de datos.
 
 ---
@@ -24,16 +24,16 @@ Incluye análisis de ingresos mensuales, productos más vendidos y estacionalida
 ---
 
 ## 🛠️ Herramientas que utilizo
-- **Power BI** → Dashboards interactivos y DAX.  
-- **Python** → Limpieza y análisis de datos (Pandas, Matplotlib, Seaborn).  
+- **Power BI** → Dashboards interactivos y DAX.    
 - **SQL** → Consultas y modelado de bases de datos.  
-- **Excel** → Reporting y análisis rápido.  
+- **Excel** → Reporting y análisis rápido.
+- **Python** → Limpieza y análisis de datos (Pandas, Matplotlib, Seaborn).
 
 ---
 
 ## 📬 Contacto
-- 💼 [LinkedIn](https://www.linkedin.com/in/tuusuario)  
-- 📧 [Email](mailto:tuemail@example.com)  
+- 💼 [LinkedIn]([https://www.linkedin.com/in/ezequielbochicchio/])  
+- 📧 [Email](mailto:ezequiel.bochicchio88@gmail.com)  
 - 🐙 [GitHub](https://github.com/tuusuario)  
 
 ---
