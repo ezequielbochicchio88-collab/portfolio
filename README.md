@@ -4,23 +4,32 @@
 Este portfolio reúne mis principales proyectos en análisis y visualización de datos.
 
 ---
+## 📌 Proyectos
 
-## 📊 Proyectos en Power BI
-### 1. [Dashboard de Marketing](proyectos/marketing_powerbi.md)
-Análisis de clientes, compras y productos en un dataset de marketing.  
-Incluye KPIs como gasto total, compras, ticket medio y clientes multicanal.  
+### 1. Dashboard de Marketing
+**Descripción:**  
+Reporte en Power BI que analiza datos de clientes y compras para entender patrones de consumo y comportamiento.  
 
-![Vista previa](assets/imagenes/resumen.png)
+**Objetivos:**  
+- Identificar gasto total, número de compras y ticket medio.  
+- Analizar la segmentación por estado civil, educación e hijos.  
+- Evaluar el comportamiento multicanal.  
+- Detectar los productos con mayor ticket medio.  
 
----
+**Herramientas utilizadas:**  
+- Power BI (modelado, DAX, visualizaciones).  
+- CSV dataset de marketing.  
 
-## 🐍 Proyectos en Python
-### 1. [Análisis de Ventas con Python](proyectos/python_ventas.md)
-Exploración y visualización de datos de ventas con Pandas, Matplotlib y Seaborn.  
-Incluye análisis de ingresos mensuales, productos más vendidos y estacionalidad.  
+**Principales insights:**  
+- Alta proporción de clientes multicanal.  
+- Vinos y carnes concentran gran parte del ticket medio.  
+- Diferencias claras en el gasto según perfil demográfico.  
 
-![Vista previa](assets/imagenes/python_ventas.png)
+**Vista previa:**  
+![Dashboard de Marketing](assets/imagenes/resumen.png)  
 
+**Ver más:**  
+➡️ [Detalle del proyecto](proyectos/marketing_powerbi.md)
 ---
 
 ## 🛠️ Herramientas que utilizo
