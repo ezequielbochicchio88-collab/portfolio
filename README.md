@@ -32,7 +32,7 @@ Incluye análisis de ingresos mensuales, productos más vendidos y estacionalida
 ---
 
 ## 📬 Contacto
-- 💼 [LinkedIn]([https://www.linkedin.com/in/ezequielbochicchio/])  
+- 💼 [[LinkedIn]([https://www.linkedin.com/in/ezequielbochicchio/]) ](https://www.linkedin.com/in/ezequielbochicchio/) 
 - 📧 [Email](mailto:ezequiel.bochicchio88@gmail.com)  
 - 🐙 [GitHub](https://github.com/tuusuario)  
 
