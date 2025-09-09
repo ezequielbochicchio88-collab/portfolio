@@ -30,7 +30,7 @@ Reporte en Power BI que analiza datos de clientes y compras para entender patron
 ![Dashboard de Marketing](resumen.png)  
 
 **Ver más:**  
-➡️ [Detalle del proyecto](proyectos/marketing_powerbi.md)
+➡️ [Detalle del proyecto](Proyecto_Marketing.md)
 ---
 
 ## 🛠️ Herramientas que utilizo
