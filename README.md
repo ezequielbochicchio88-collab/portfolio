@@ -12,7 +12,7 @@ Reporte en Power BI que analiza datos de clientes y compras para entender patron
 
 **Objetivos:**  
 - Identificar gasto total, número de compras y ticket medio.  
-- Analizar la segmentación por estado civil, educación e hijos.  
+- Analizar la segmentación por edades, estado civil, cantidad de hijos, educación y nivel de ingresos.  
 - Evaluar el comportamiento multicanal.  
 - Detectar los productos con mayor ticket medio.  
 
