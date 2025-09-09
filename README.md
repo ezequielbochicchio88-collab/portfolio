@@ -17,9 +17,10 @@ Reporte en Power BI que analiza datos de clientes y compras para entender patron
 - Detectar los productos con mayor ticket medio.  
 
 **Herramientas utilizadas:**  
+- Python (Limpieza y preparación de los datos).
+- BigQuery (almacenamiento y preparación de los datos).
 - Power BI (modelado, DAX, visualizaciones).  
-- CSV dataset de marketing.  
-
+  
 **Principales insights:**  
 - Alta proporción de clientes multicanal.  
 - Vinos y carnes concentran gran parte del ticket medio.  
