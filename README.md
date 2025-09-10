@@ -78,7 +78,7 @@ Este proyecto analiza datos de alojamientos de Airbnb en Madrid utilizando Pytho
 ---
 
 ## 📬 Contacto
-- 💼 [[LinkedIn]([https://www.linkedin.com/in/ezequielbochicchio/]) ](https://www.linkedin.com/in/ezequielbochicchio/) 
+- 💼 [[LinkedIn]([https://www.linkedin.com/in/ezequielbochicchio/])
 - 📧 [Email](mailto:ezequiel.bochicchio88@gmail.com)  
 - 🐙 [GitHub](https://github.com/ezequielbochicchio88-collab)  
 
