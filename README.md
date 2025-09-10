@@ -1,7 +1,7 @@
 # 🚀 Portfolio de Análisis de Datos
 
 ¡Hola! Soy Ezequiel, Profesional del Marketing con más de 10 años de trayectoria y experiencia en posiciones de análisis de datos e inteligencia de negocio.
-Este portfolio reúne mis principales proyectos en análisis y visualización de datos.
+Este portfolio reúne mis principales proyectos personales en análisis y visualización de datos.
 
 ---
 ## 📌 Proyectos
@@ -50,7 +50,7 @@ Reporte en Power BI que analiza datos de clientes y compras para entender patron
 ## 📬 Contacto
 - 💼 [[LinkedIn]([https://www.linkedin.com/in/ezequielbochicchio/]) ](https://www.linkedin.com/in/ezequielbochicchio/) 
 - 📧 [Email](mailto:ezequiel.bochicchio88@gmail.com)  
-- 🐙 [GitHub](https://github.com/tuusuario)  
+- 🐙 [GitHub](https://github.com/ezequielbochicchio88-collab)  
 
 ---
 ✍️ *Este portfolio está en constante actualización con nuevos proyectos.*
