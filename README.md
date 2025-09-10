@@ -32,7 +32,7 @@ Reporte en Power BI que analiza datos de clientes y compras para entender patron
 
 **Ver más:**  
 ### 📂 Detalle del proyecto
-- 📊 [Dataset limpio (CSV)](v_marketing_powerbi_000000000000.csv)  
+- 📊 [Dataset (CSV)](marketing_campaign.csv)  
 - 🐍 [Script en Python](analisis_marketing.py)  
 - 🗄️ [Consultas SQL](marketing_cleaning_queries.sql)  
 - 📑 [Archivo Power BI](Proyecto_Marketing.pbix)
