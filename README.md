@@ -37,6 +37,36 @@ Reporte en Power BI que analiza datos de clientes y compras para entender patron
 - 🗄️ [Consultas SQL](marketing_cleaning_queries.sql)  
 - 📑 [Archivo Power BI](Proyecto_Marketing.pbix)
 
+### 2. Análisis de Airbnb en Madrid
+**Descripción:**  
+Este proyecto analiza datos de alojamientos de Airbnb en Madrid utilizando Python para la limpieza y análisis exploratorio, y Power BI para el modelado y visualización de los resultados.
+
+**Objetivos:**  
+- Analizar la distribución de propiedades por distrito y tipo de alojamiento.  
+- Identificar variaciones en el precio medio por noche según ubicación.  
+- Detectar outliers en los precios y normalizar los datos.  
+- Evaluar la disponibilidad y reseñas a lo largo del tiempo.  
+
+**Herramientas utilizadas:**  
+- Python (Pandas, Matplotlib, Seaborn, Numpy) → limpieza y análisis exploratorio.
+- Power BI → modelado, medidas DAX y visualizaciones interactivas.
+- Excel/CSV → dataset de Airbnb con alojamientos en Madrid.  
+
+**Principales insights:**  
+- Los apartamentos concentran la mayor parte de la oferta frente a otros tipos de propiedades.  
+- Diferencias significativas en el precio promedio por distrito.  
+- Presencia de outliers extremos en los precios que distorsionaban los resultados.
+- Los barrios céntricos tienen mayor disponibilidad, aunque con precios más altos. 
+
+**Vista previa:**  
+![Airbnb_Madrid](Airbnb_dashboard.png)
+
+**Ver más:**  
+### 📂 Detalle del proyecto
+- 📊 [Dataset (CSV)](listings.csv)  
+- 🐍 [Script en Python](airbnb_cleaning.py)    
+- 📑 [Archivo Power BI](Airbnb_Madrid.pbix)
+
 ---
 
 ## 🛠️ Herramientas que utilizo
