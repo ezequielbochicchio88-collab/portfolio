@@ -67,6 +67,10 @@ Este proyecto analiza datos de alojamientos de Airbnb en Madrid utilizando Pytho
 - 🐍 [Script en Python](airbnb_cleaning.py)    
 - 📑 [Archivo Power BI](Airbnb_Madrid.pbix)
 
+3.🏨 Hotel Booking Analysis — Data Cleaning & Insights
+
+📊 Análisis exploratorio y de comportamiento de cancelaciones en reservas hoteleras
+
 ---
 
 ## 🛠️ Herramientas que utilizo
