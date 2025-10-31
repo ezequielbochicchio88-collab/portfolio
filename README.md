@@ -68,14 +68,14 @@ Este proyecto analiza datos de alojamientos de Airbnb en Madrid utilizando Pytho
 - 📑 [Archivo Power BI](Airbnb_Madrid.pbix)
 
 ### 3.Hotel Booking Analysis — Data Cleaning & Insights
-Análisis exploratorio y de comportamiento de cancelaciones en reservas hoteleras
+**Análisis exploratorio y de comportamiento de cancelaciones en reservas hoteleras**
 
-1. Descripción del Proyecto
+**1. Descripción del Proyecto**
 
 Este proyecto analiza el dataset Hotel Booking Demand con el objetivo de comprender los patrones de cancelación de reservas según distintos factores: país, tipo de cliente, canal de reserva, tipo de depósito, entre otros.
 Se aplican técnicas de limpieza de datos, análisis exploratorio (EDA) y generación de hipótesis e insights útiles para la toma de decisiones.
 
-2. Librerías Principales
+**2. Librerías Principales**
 
 import pandas as pd
 import numpy as np
@@ -86,9 +86,9 @@ Configuraciones de visualización:
 pd.set_option('display.max_columns', None)
 sns.set(style='whitegrid', palette='muted')
 
-3. Limpieza y Preparación de Datos
+**3. Limpieza y Preparación de Datos**
 
-1️⃣ Carga y exploración inicial
+**1️⃣ Carga y exploración inicial**
 
 - Se observó tamaño del dataset, tipos de datos y valores nulos.
 - Se eliminaron duplicados.
@@ -101,7 +101,7 @@ df['company'] = df['company'].fillna('Unknown')
 df['country'] = df['country'].fillna('Unknown')
 df['children'] = df['children'].fillna(0).astype(int)
 
-2️⃣ Feature Engineering
+**2️⃣ Feature Engineering**
 
 - stay_length: duración total de la estancia.
 - high_season: indicador de temporada alta.
@@ -114,8 +114,8 @@ df['month'] = df['reservation_status_date'].dt.month
 df['year'] = df['reservation_status_date'].dt.year
 df['high_season'] = df['month'].isin([6,7,8,12]).astype(int)
 
-4. Análisis Exploratorio (EDA)
-🔹 Distribución general de reservas
+**4. Análisis Exploratorio (EDA)**
+**🔹 Distribución general de reservas**
 
 - City Hotel concentra más reservas que Resort Hotel, pero tiene mayor tasa de cancelación.
 sns.countplot(x='hotel', data=df)
@@ -125,26 +125,26 @@ plt.show()
 - Las reservas se concentran en meses de verano (junio-agosto) y diciembre.
 - La tasa global de cancelación es aproximadamente 27%.
 
-🔹 Duración de la estancia por tipo de cliente
+**🔹 Duración de la estancia por tipo de cliente**
 
 sns.barplot(x='customer_type', y='stay_length', data=df)
 plt.title('Duración promedio de estancia por tipo de cliente')
 plt.show()
 
-📍 Insight:
+**📍 Insight:**
 Los clientes Transient (individuales) tienden a estancias más cortas, mientras que los Group tienen estancias más largas.
 
-🔹 Relación entre precio (ADR) y cancelaciones
+**🔹 Relación entre precio (ADR) y cancelaciones**
 
 sns.barplot(x='is_canceled', y='adr', data=df)
 plt.title('Precio promedio (ADR) según cancelación')
 plt.show()
 
-📍 Insight:
+**📍 Insight:**
 Las reservas canceladas presentan ADR ligeramente más alto, lo cual puede indicar búsqueda de precios más competitivos o reubicaciones posteriores.
 
-5. Análisis de Cancelaciones
-5.1 Cancelaciones por Segmento
+**5. Análisis de Cancelaciones**
+**5.1 Cancelaciones por Segmento**
 
 Para cada variable categórica (hotel, country, market_segment, distribution_channel, etc.) se calcularon:
 - Total de reservas
@@ -166,30 +166,30 @@ def resumen_cancelaciones_mejorado(df, columna):
     resumen['noches_promedio'] = resumen['noches_promedio'].round(1)
     return resumen.sort_values(by=['reservas', 'tasa_cancelacion'], ascending=[False, False])
 
-📍 Conclusiones principales:
+**📍 Conclusiones principales:**
 - City Hotel presenta más cancelaciones que Resort Hotel.
 - Portugal domina en volumen y tasa de cancelación (35,7%).
 - España tiene tasas altas a pesar de su ADR más elevado.
 - Segmentos online presentan más cancelaciones (mayor flexibilidad).
 - A mayor duración de estancia, aumenta la tasa de cancelación (contrario a lo esperado).
 
-5.2 Clientes con historial de cancelaciones
+**5.2 Clientes con historial de cancelaciones**
 
 df['previous_cancel_group'] = df['previous_cancellations'].apply(
     lambda x: 'No canceló antes' if x == 0 else 'Canceló antes'
 )
 
-📍 Insight:
+**📍 Insight:**
 Los clientes que ya cancelaron previamente presentan una tasa de cancelación actual más alta → se confirma un comportamiento repetitivo.
 
-5.3 Cambio de habitación y cancelaciones
+**5.3 Cambio de habitación y cancelaciones**
 
 df['room_changed'] = (df['reserved_room_type'] != df['assigned_room_type']).astype(int)
 
-📍 Insight:
+**📍 Insight:**
 No se encontró una relación significativa entre el cambio de habitación y la cancelación (solo 4% de las reservas cambiadas terminan canceladas).
 
-6. Comparativa Internacional
+**6. Comparativa Internacional**
 
 comparacion_paises = (
     df[df['country'].isin(['PRT','ESP','FRA','GBR','DEU'])]
@@ -216,28 +216,28 @@ Resumen:
 Correlación ADR vs Tasa de Cancelación: −0.25
 → Leve tendencia inversa, no universal.
 
-🔸 País + Canal
+**🔸 País + Canal**
 
-En España, las cancelaciones son muy altas en el canal online.
-En Portugal, tanto el canal offline como online tienen tasas cercanas al 43%.
+- En España, las cancelaciones son muy altas en el canal online.
+- En Portugal, tanto el canal offline como online tienen tasas cercanas al 43%.
 
-🔸 País + Tipo de Depósito
+**🔸 País + Tipo de Depósito**
 
-Predomina “No Deposit”.
-Portugal tiene un volumen significativo de “Non Refund” con 97% de cancelaciones → probable inconsistencia o error de clasificación.
+- Predomina “No Deposit”.
+- Portugal tiene un volumen significativo de “Non Refund” con 97% de cancelaciones → probable inconsistencia o error de clasificación.
 
-🔸 País + Tipo de Cliente
+**🔸 País + Tipo de Cliente**
 
-Portugal concentra muchos clientes Transient-Party, con alta cancelación (33,3%) y ADR bajo.
-Refleja un patrón de grupos informales o familiares que tienden a modificar o cancelar reservas con mayor frecuencia.
+- Portugal concentra muchos clientes Transient-Party, con alta cancelación (33,3%) y ADR bajo.
+- Refleja un patrón de grupos informales o familiares que tienden a modificar o cancelar reservas con mayor frecuencia.
 
-7. Conclusiones Generales
+**7. Conclusiones Generales**
 
-Portugal impulsa la tasa global de cancelación del dataset.
-Las cancelaciones se asocian más a canales online y estancias medias/largas.
-Clientes reincidentes son más propensos a volver a cancelar.
-No se observa relación significativa entre cambio de habitación y cancelación.
-La relación entre precio (ADR) y cancelación es débilmente inversa (−0.25).
+- Portugal impulsa la tasa global de cancelación del dataset.
+- Las cancelaciones se asocian más a canales online y estancias medias/largas.
+- Clientes reincidentes son más propensos a volver a cancelar.
+- No se observa relación significativa entre cambio de habitación y cancelación.
+- La relación entre precio (ADR) y cancelación es débilmente inversa (−0.25).
 
 ---
 
