@@ -94,13 +94,17 @@ Se aplican técnicas de limpieza de datos, análisis exploratorio (EDA) y genera
 **🔹 Distribución general de reservas**
 
 - City Hotel concentra más reservas que Resort Hotel, pero tiene mayor tasa de cancelación.
-- Las reservas se concentran en meses de verano (junio-agosto) y diciembre.
+- Las reservas se concentran en meses de verano (julio-agosto).
 - La tasa global de cancelación es aproximadamente 27%.
+
+<img width="1218" height="894" alt="image" src="https://github.com/user-attachments/assets/ab2c8189-0323-4a3d-83a5-31641b5f3fb7" />
+<img width="1310" height="920" alt="image" src="https://github.com/user-attachments/assets/3b3ce4f9-fecf-42ca-8c67-cb40ec3b93a9" />
 
 **🔹 Duración de la estancia por tipo de cliente**
 
 **📍 Insight:**
 Los clientes Transient (individuales) tienden a estancias más cortas, mientras que los Group tienen estancias más largas.
+<img width="1604" height="1134" alt="image" src="https://github.com/user-attachments/assets/2c13c31f-caf1-4172-9928-6e95cd52d478" />
 
 **🔹 Relación entre precio (ADR) y cancelaciones**
 
