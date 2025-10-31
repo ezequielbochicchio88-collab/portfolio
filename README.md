@@ -73,6 +73,7 @@ Este proyecto analiza datos de alojamientos de Airbnb en Madrid utilizando Pytho
 **1. Descripción del Proyecto**
 
 Este proyecto analiza el dataset Hotel Booking Demand con el objetivo de comprender los patrones de cancelación de reservas según distintos factores: país, tipo de cliente, canal de reserva, tipo de depósito, entre otros.
+
 Se aplican técnicas de limpieza de datos, análisis exploratorio (EDA) y generación de hipótesis e insights útiles para la toma de decisiones.
 
 **2. Limpieza y Preparación de Datos**
