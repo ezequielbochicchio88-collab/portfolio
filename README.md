@@ -104,12 +104,15 @@ Se aplican técnicas de limpieza de datos, análisis exploratorio (EDA) y genera
 
 **📍 Insight:**
 Los clientes Transient (individuales) tienden a estancias más cortas, mientras que los Group tienen estancias más largas.
+
 <img width="1604" height="1134" alt="image" src="https://github.com/user-attachments/assets/2c13c31f-caf1-4172-9928-6e95cd52d478" />
 
 **🔹 Relación entre precio (ADR) y cancelaciones**
 
 **📍 Insight:**
 Las reservas canceladas presentan ADR ligeramente más alto, lo cual puede indicar búsqueda de precios más competitivos o reubicaciones posteriores.
+
+<img width="1394" height="960" alt="image" src="https://github.com/user-attachments/assets/7f477c1b-bc03-4c58-8e10-44aaad72d4cc" />
 
 **4. Análisis de Cancelaciones**
 **4.1 Cancelaciones por Segmento**
@@ -127,15 +130,24 @@ Para cada variable categórica (hotel, country, market_segment, distribution_cha
 - Segmentos online presentan más cancelaciones (mayor flexibilidad).
 - A mayor duración de estancia, aumenta la tasa de cancelación (contrario a lo esperado).
 
+<img width="1106" height="316" alt="image" src="https://github.com/user-attachments/assets/63e98d9b-9e0d-452b-9bbd-32fe96abc007" />
+<img width="1024" height="464" alt="image" src="https://github.com/user-attachments/assets/2788fb07-4810-49bb-a6bb-67d54ac16219" />
+<img width="1196" height="664" alt="image" src="https://github.com/user-attachments/assets/6932c7cc-b1cd-411b-a7c2-d3d572e08e52" />
+<img width="1170" height="360" alt="image" src="https://github.com/user-attachments/assets/33019797-f3c1-418e-96a1-02bcb7e5d1f5" />
+
 **4.2 Clientes con historial de cancelaciones**
 
 **📍 Insight:**
 Los clientes que ya cancelaron previamente presentan una tasa de cancelación actual más alta → se confirma un comportamiento repetitivo.
 
+<img width="1194" height="290" alt="image" src="https://github.com/user-attachments/assets/e00ad02f-fa12-480c-9436-3d9adb525672" />
+
 **4.3 Cambio de habitación y cancelaciones**
 
 **📍 Insight:**
 No se encontró una relación significativa entre el cambio de habitación y la cancelación (solo 4% de las reservas cambiadas terminan canceladas).
+
+<img width="898" height="276" alt="image" src="https://github.com/user-attachments/assets/788ace24-405a-4fa4-9a33-b9761786a48b" />
 
 **5. Comparativa Internacional**
 
@@ -149,6 +161,7 @@ Resumen:
 | DEU  | 5,387    | 1,053         | 19.5     | 105.94  |
 | GBR  | 10,433   | 1,985         | 19.0     | 97.67   |
 
+<img width="1592" height="946" alt="image" src="https://github.com/user-attachments/assets/500d76c7-b652-4245-bf1f-9db9471a3bdd" />
 
 Correlación ADR vs Tasa de Cancelación: −0.25
 → Leve tendencia inversa, no universal.
@@ -158,15 +171,21 @@ Correlación ADR vs Tasa de Cancelación: −0.25
 - En España, las cancelaciones son muy altas en el canal online.
 - En Portugal, tanto el canal offline como online tienen tasas cercanas al 43%.
 
+<img width="2032" height="1132" alt="image" src="https://github.com/user-attachments/assets/5be889ac-94a5-4691-85c6-3ad5fb49078a" />
+
 **🔸 País + Tipo de Depósito**
 
 - Predomina “No Deposit”.
 - Portugal tiene un volumen significativo de “Non Refund” con 97% de cancelaciones → probable inconsistencia o error de clasificación.
 
+<img width="1986" height="1008" alt="image" src="https://github.com/user-attachments/assets/464d26a4-9746-4a64-afcd-c07ec80c8e09" />
+
 **🔸 País + Tipo de Cliente**
 
 - Portugal concentra muchos clientes Transient-Party, con alta cancelación (33,3%) y ADR bajo.
 - Refleja un patrón de grupos informales o familiares que tienden a modificar o cancelar reservas con mayor frecuencia.
+
+<img width="1986" height="990" alt="image" src="https://github.com/user-attachments/assets/797e196d-8d4c-46de-a693-88b2b215fca6" />
 
 **6. Conclusiones Generales**
 
