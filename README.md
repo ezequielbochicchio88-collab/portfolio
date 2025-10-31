@@ -91,6 +91,7 @@ Se aplican técnicas de limpieza de datos, análisis exploratorio (EDA) y genera
 - high_season_arrival: temporada alta al momento del arribo.
 
 **3. Análisis Exploratorio (EDA)**
+
 **🔹 Distribución general de reservas**
 
 - City Hotel concentra más reservas que Resort Hotel, pero tiene mayor tasa de cancelación.
@@ -115,6 +116,7 @@ Las reservas canceladas presentan ADR ligeramente más alto, lo cual puede indic
 <img width="1394" height="960" alt="image" src="https://github.com/user-attachments/assets/7f477c1b-bc03-4c58-8e10-44aaad72d4cc" />
 
 **4. Análisis de Cancelaciones**
+
 **4.1 Cancelaciones por Segmento**
 
 Para cada variable categórica (hotel, country, market_segment, distribution_channel, etc.) se calcularon:
