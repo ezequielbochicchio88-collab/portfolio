@@ -103,7 +103,7 @@ Se aplican técnicas de limpieza de datos, análisis exploratorio (EDA) y genera
 **🔹 Duración de la estancia por tipo de cliente**
 
 **📍 Insight:**
-Los clientes Transient (individuales) tienden a estancias más cortas, mientras que los Group tienen estancias más largas.
+Los clientes Transient (individuales) tienden a estancias más cortas, mientras que los Contract (empleados que son enviados por una empresa por ejemplo) tienen estancias más largas.
 
 <img width="1604" height="1134" alt="image" src="https://github.com/user-attachments/assets/2c13c31f-caf1-4172-9928-6e95cd52d478" />
 
