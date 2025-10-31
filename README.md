@@ -67,15 +67,15 @@ Este proyecto analiza datos de alojamientos de Airbnb en Madrid utilizando Pytho
 - 🐍 [Script en Python](airbnb_cleaning.py)    
 - 📑 [Archivo Power BI](Airbnb_Madrid.pbix)
 
-### 3.🏨 Hotel Booking Analysis — Data Cleaning & Insights
-📊 Análisis exploratorio y de comportamiento de cancelaciones en reservas hoteleras
+### 3.Hotel Booking Analysis — Data Cleaning & Insights
+Análisis exploratorio y de comportamiento de cancelaciones en reservas hoteleras
 
-📁 1. Descripción del Proyecto
+1. Descripción del Proyecto
 
 Este proyecto analiza el dataset Hotel Booking Demand con el objetivo de comprender los patrones de cancelación de reservas según distintos factores: país, tipo de cliente, canal de reserva, tipo de depósito, entre otros.
 Se aplican técnicas de limpieza de datos, análisis exploratorio (EDA) y generación de hipótesis e insights útiles para la toma de decisiones.
 
-🧰 2. Librerías Principales
+2. Librerías Principales
 
 import pandas as pd
 import numpy as np
@@ -86,13 +86,13 @@ Configuraciones de visualización:
 pd.set_option('display.max_columns', None)
 sns.set(style='whitegrid', palette='muted')
 
-🧹 3. Limpieza y Preparación de Datos
+3. Limpieza y Preparación de Datos
 
 1️⃣ Carga y exploración inicial
 
-Se observó tamaño del dataset, tipos de datos y valores nulos.
-Se eliminaron duplicados.
-Se imputaron valores faltantes con criterios representativos.
+- Se observó tamaño del dataset, tipos de datos y valores nulos.
+- Se eliminaron duplicados.
+- Se imputaron valores faltantes con criterios representativos.
 
 df = pd.read_csv('hotel_bookings.csv')
 df = df.drop_duplicates()
@@ -103,10 +103,10 @@ df['children'] = df['children'].fillna(0).astype(int)
 
 2️⃣ Feature Engineering
 
-stay_length: duración total de la estancia.
-high_season: indicador de temporada alta.
-year y month: extracción de fecha de reserva.
-high_season_arrival: temporada alta al momento del arribo.
+- stay_length: duración total de la estancia.
+- high_season: indicador de temporada alta.
+- year y month: extracción de fecha de reserva.
+- high_season_arrival: temporada alta al momento del arribo.
 
 df['stay_length'] = df['stays_in_weekend_nights'] + df['stays_in_week_nights']
 df['reservation_status_date'] = pd.to_datetime(df['reservation_status_date'])
@@ -114,16 +114,16 @@ df['month'] = df['reservation_status_date'].dt.month
 df['year'] = df['reservation_status_date'].dt.year
 df['high_season'] = df['month'].isin([6,7,8,12]).astype(int)
 
-📈 4. Análisis Exploratorio (EDA)
+4. Análisis Exploratorio (EDA)
 🔹 Distribución general de reservas
 
-City Hotel concentra más reservas que Resort Hotel, pero tiene mayor tasa de cancelación.
+- City Hotel concentra más reservas que Resort Hotel, pero tiene mayor tasa de cancelación.
 sns.countplot(x='hotel', data=df)
 plt.title('Distribución de reservas por tipo de hotel')
 plt.show()
 
-Las reservas se concentran en meses de verano (junio-agosto) y diciembre.
-La tasa global de cancelación es aproximadamente 27%.
+- Las reservas se concentran en meses de verano (junio-agosto) y diciembre.
+- La tasa global de cancelación es aproximadamente 27%.
 
 🔹 Duración de la estancia por tipo de cliente
 
@@ -143,14 +143,14 @@ plt.show()
 📍 Insight:
 Las reservas canceladas presentan ADR ligeramente más alto, lo cual puede indicar búsqueda de precios más competitivos o reubicaciones posteriores.
 
-🧮 5. Análisis de Cancelaciones
+5. Análisis de Cancelaciones
 5.1 Cancelaciones por Segmento
 
 Para cada variable categórica (hotel, country, market_segment, distribution_channel, etc.) se calcularon:
-Total de reservas
-Total de cancelaciones
-Tasa (%) de cancelación
-Promedio de noches por reserva
+- Total de reservas
+- Total de cancelaciones
+- Tasa (%) de cancelación
+- Promedio de noches por reserva
 
 def resumen_cancelaciones_mejorado(df, columna):
     resumen = (
@@ -167,11 +167,11 @@ def resumen_cancelaciones_mejorado(df, columna):
     return resumen.sort_values(by=['reservas', 'tasa_cancelacion'], ascending=[False, False])
 
 📍 Conclusiones principales:
-City Hotel presenta más cancelaciones que Resort Hotel.
-Portugal domina en volumen y tasa de cancelación (35,7%).
-España tiene tasas altas a pesar de su ADR más elevado.
-Segmentos online presentan más cancelaciones (mayor flexibilidad).
-A mayor duración de estancia, aumenta la tasa de cancelación (contrario a lo esperado).
+- City Hotel presenta más cancelaciones que Resort Hotel.
+- Portugal domina en volumen y tasa de cancelación (35,7%).
+- España tiene tasas altas a pesar de su ADR más elevado.
+- Segmentos online presentan más cancelaciones (mayor flexibilidad).
+- A mayor duración de estancia, aumenta la tasa de cancelación (contrario a lo esperado).
 
 5.2 Clientes con historial de cancelaciones
 
@@ -189,7 +189,7 @@ df['room_changed'] = (df['reserved_room_type'] != df['assigned_room_type']).asty
 📍 Insight:
 No se encontró una relación significativa entre el cambio de habitación y la cancelación (solo 4% de las reservas cambiadas terminan canceladas).
 
-🌍 6. Comparativa Internacional
+6. Comparativa Internacional
 
 comparacion_paises = (
     df[df['country'].isin(['PRT','ESP','FRA','GBR','DEU'])]
@@ -202,7 +202,7 @@ comparacion_paises = (
     )
 )
 
-📊 Resumen:
+Resumen:
 
 | País | Reservas | Cancelaciones | Tasa (%) | ADR (€) |
 | ---- | -------- | ------------- | -------- | ------- |
@@ -213,7 +213,7 @@ comparacion_paises = (
 | GBR  | 10,433   | 1,985         | 19.0     | 97.67   |
 
 
-📉 Correlación ADR vs Tasa de Cancelación: −0.25
+Correlación ADR vs Tasa de Cancelación: −0.25
 → Leve tendencia inversa, no universal.
 
 🔸 País + Canal
@@ -231,7 +231,7 @@ Portugal tiene un volumen significativo de “Non Refund” con 97% de cancelaci
 Portugal concentra muchos clientes Transient-Party, con alta cancelación (33,3%) y ADR bajo.
 Refleja un patrón de grupos informales o familiares que tienden a modificar o cancelar reservas con mayor frecuencia.
 
-🧠 7. Conclusiones Generales
+7. Conclusiones Generales
 
 Portugal impulsa la tasa global de cancelación del dataset.
 Las cancelaciones se asocian más a canales online y estancias medias/largas.
