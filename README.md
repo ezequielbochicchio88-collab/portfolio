@@ -202,7 +202,7 @@ Correlación ADR vs Tasa de Cancelación: −0.25
 ### 📂 Detalle del proyecto
 - 📊 [Dataset (CSV)](hotel_booking.csv)
 - 📊 [Dataset post limpieza y transformaciones](hotel_booking_clean.csv) 
-- 🐍 [Script en Python](analisis_marketing.py)  
+- 🐍 [Script en Python](analisis_hotel_bookings.py)  
 
 ---
 
