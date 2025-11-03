@@ -198,6 +198,12 @@ Correlación ADR vs Tasa de Cancelación: −0.25
 - No se observa relación significativa entre cambio de habitación y cancelación.
 - La relación entre precio (ADR) y cancelación es débilmente inversa (−0.25).
 
+**Ver más:**  
+### 📂 Detalle del proyecto
+- 📊 [Dataset (CSV)](hotel_booking.csv)
+- 📊 [Dataset post limpieza y transformaciones](hotel_booking_clean.csv) 
+- 🐍 [Script en Python](analisis_marketing.py)  
+
 ---
 
 ## 🛠️ Herramientas que utilizo
