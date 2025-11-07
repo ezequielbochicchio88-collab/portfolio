@@ -229,18 +229,136 @@ Se aplican técnicas de limpieza y transformación de datos mediante el uso de P
 **3. Análisis en Google BigQuery**
 
 🏁 I. Rendimiento General de Ventas
+1️⃣ Evolución del volumen total de ventas
 
-1️⃣ ¿Cómo ha evolucionado el volumen total de ventas de BMW entre 2010 y 2024?
-* Intención: analizar tendencias anuales y detectar años de crecimiento o caída.
+Intención: Analizar tendencias anuales y detectar años de crecimiento o caída.
+Resultado:
+- Entre 2011 y 2015 el volumen de ventas aumentó de 16M a 17M unidades, pero luego comenzó a decrecer hasta 2019, año en el que volvió a alcanzar los niveles de 2015.
+- En 2020 se registró el mínimo histórico (16,3M), probablemente debido al impacto del Covid-19.
+- Desde 2021 las ventas se recuperaron, alcanzando su pico máximo en 2022 con 17,9M unidades.
 
-- Desde el año 2011 al 2015 el volumen de ventas aumenta de 16 M a 17 M, luego comienza a decrecer hasta 2019 donde se recupera el nivel de ventas de 2015 de 17 M.
-- En 2020 encontramos el menor volumen de ventas, 16,3 M (muy probablemente debido al Covid-19).
-- En 2021 el volumen de ventas comienza a recuperarse alcanzando su pico dentro del dataset en 2022 con 17,9 M.
+2️⃣ Modelos que más aportan al total de ingresos globales
 
-2️⃣ ¿Qué modelos aportan más al total de ingresos globales?
-* Intención: identificar los modelos más rentables, no solo los más vendidos.
-  
-- Los 5 modelos más rentables son (del 1 a 5 por total revenue):
+Intención: Identificar los modelos más rentables, no solo los más vendidos.
+Resultado:
+- Los 5 modelos más rentables (por total de ingresos) son:
+
+(visualización pendiente)
+
+3️⃣ Región con mayor porcentaje de ventas totales
+
+Intención: Evaluar la distribución geográfica y el peso relativo de cada región.
+Resultado:
+- Aunque el volumen de ventas es relativamente homogéneo entre regiones, Asia lidera con cerca del 17% del total global.
+
+🌍 II. Análisis Geográfico
+4️⃣ Región más rentable por tipo de combustible
+
+Intención: Evaluar qué combustibles funcionan mejor en cada mercado.
+Resultado:
+
+- Petrol: Middle East
+- Hybrid: Asia
+- Diesel: Asia
+- Electric: North America
+
+5️⃣ Precio promedio más alto por tamaño de motor y región
+
+Intención: Determinar si los motores grandes se valoran más en ciertos mercados.
+Resultado:
+
+- Small: África
+- Medium: Sudamérica
+- Large: Asia
+- Performance: Asia
+
+6️⃣ Color de automóvil más vendido por continente
+
+Intención: Conocer preferencias estéticas regionales.
+Resultado: (visualización pendiente)
+
+⚙️ III. Producto y Segmentación
+7️⃣ Modelos dominantes en cada segmento de ventas (“High”, “Medium”, “Low”)
+
+Intención: Identificar qué productos lideran cada nivel comercial.
+Resultado:
+- El BMW 7 Series domina tanto el segmento High como el Low en función del volumen de ventas.
+
+8️⃣ Impacto de la transmisión en precio y volumen de ventas
+
+Intención: Entender si los clientes pagan más por transmisiones automáticas.
+Resultado:
+- Los coches con transmisión automática tienen un precio promedio más alto y mayor volumen de ventas que los manuales, especialmente impulsados por Europa y Norteamérica.
+
+9️⃣ Correlación entre tamaño del motor, precio y ventas
+
+Intención: Verificar si los motores grandes impulsan ventas o solo precios.
+Resultado:
+- Los vehículos con motores grandes muestran el mayor volumen de ventas promedio y los precios más altos, aunque en menor cantidad dentro del dataset.
+
+⛽ IV. Tendencias por Tipo de Combustible
+🔟 Combustibles con mayor crecimiento de participación
+
+Intención: Analizar la transición hacia híbridos o eléctricos.
+Resultado:
+- Los Diesel e Híbridos son los tipos de combustible que más ganaron cuota de mercado entre 2010 y 2024.
+- Además, ambos aumentaron significativamente su volumen de ventas, mientras que los eléctricos y gasolina perdieron participación.
+
+11️⃣ Combinación modelo + tipo de combustible más rentable
+
+Intención: Detectar oportunidades comerciales (p. ej., híbridos de alta gama).
+Resultado:
+- La combinación BMW 7 Series Híbrido es la que mayor nivel de ingresos genera a nivel global.
+
+📈 V. Desempeño Financiero
+12️⃣ Modelos con mayor precio promedio por litro de motor
+
+Intención: Medir la eficiencia económica del tamaño del motor.
+Resultado: (visualización pendiente)
+
+🧩 VI. Análisis Combinado y Avanzado
+14️⃣ Modelos con ventas altas pese a precios superiores al promedio
+
+Intención: Detectar productos de alta demanda que no dependen de descuentos.
+Resultado: (visualización pendiente)
+
+15️⃣ Regiones o modelos con señales de saturación
+
+Intención: Detectar mercados maduros o productos en declive.
+Resultado:
+- El top 5 de combinaciones modelo/región con ventas decrecientes muestra señales de saturación, indicando posibles mercados maduros o productos a revisar.
+
+🧠 BONUS — Preguntas Estratégicas Tipo Business Case Real
+1️⃣ Inversión publicitaria por región y tipo de combustible
+
+Análisis:
+
+- Asia: crecimiento sostenido tanto en ventas como en revenue → región prioritaria.
+- North America: crecimiento moderado en ventas, pero fuerte aumento en rentabilidad.
+- Combustibles: priorizar Híbridos, seguidos por Eléctricos.
+
+2️⃣ Modelos a discontinuar o reemplazar
+
+Análisis:
+Modelos con caídas continuas en ventas y rentabilidad en los últimos años. (visualización pendiente)
+
+3️⃣ Segmento de motor con mejor margen por unidad vendida
+
+Análisis:
+- Los vehículos con motores grandes generan el mayor margen promedio por unidad.
+
+4️⃣ “Sweet spot” de precio que maximiza el volumen de ventas
+
+Análisis:
+- El rango 30K–50K USD representa el punto óptimo de ventas, combinando alto volumen y rentabilidad equilibrada.
+
+🏁 Conclusión
+
+Este análisis integral de BMW (2010–2024) combina tendencias de ventas, rentabilidad y comportamiento del consumidor para:
+- Detectar modelos con potencial de crecimiento o declive.
+- Identificar mercados estratégicos por región y combustible.
+- Establecer rangos de precio óptimos y segmentos de motor más rentables.
+- Guiar decisiones sobre innovación, marketing y discontinuación de producto.
 
   
 ---
