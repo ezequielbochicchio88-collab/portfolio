@@ -204,6 +204,45 @@ Correlación ADR vs Tasa de Cancelación: −0.25
 - 📊 [Dataset post limpieza y transformaciones](hotel_booking_clean.csv) 
 - 🐍 [Script en Python](analisis_hotel_bookings.py)  
 
+### 4.BMW Sales Data — Business Case with SQL 
+**Análisis de las ventas de BMW a nivel global entre el año 2010 y 2024**
+
+**1. Descripción del Proyecto**
+
+Este proyecto analiza el dataset BMW sales data (2010-2024) con el objetivo de responder, mediante el uso de consultas SQL, diversas preguntas estilo Business Case planteadas por ChatGPT.
+
+Se aplican técnicas de limpieza y transformación de datos mediante el uso de Python para luego cargar el dataset limpio en Google BigQuery y comenzar el analisis y las respuestas a todas las preguntas planteadas, usando solamente consultas SQL.
+
+**2. Limpieza y Preparación de Datos**
+
+**1️⃣ Carga y exploración inicial**
+
+- Se observó tamaño del dataset, tipos de datos, valores nulos y redondeo de campos númericos.
+
+**2️⃣ Feature Engineering**
+
+- year
+- Price_per_liter: precio / tamaño del motor.
+- Price_per_KM: precio / kilometraje.
+- Revenue_USD: Precio * volumen de venta.
+
+**3. Análisis en Google BigQuery**
+
+🏁 I. Rendimiento General de Ventas
+
+1️⃣ ¿Cómo ha evolucionado el volumen total de ventas de BMW entre 2010 y 2024?
+* Intención: analizar tendencias anuales y detectar años de crecimiento o caída.
+
+- Desde el año 2011 al 2015 el volumen de ventas aumenta de 16 M a 17 M, luego comienza a decrecer hasta 2019 donde se recupera el nivel de ventas de 2015 de 17 M.
+- En 2020 encontramos el menor volumen de ventas, 16,3 M (muy probablemente debido al Covid-19).
+- En 2021 el volumen de ventas comienza a recuperarse alcanzando su pico dentro del dataset en 2022 con 17,9 M.
+
+2️⃣ ¿Qué modelos aportan más al total de ingresos globales?
+* Intención: identificar los modelos más rentables, no solo los más vendidos.
+  
+- Los 5 modelos más rentables son (del 1 a 5 por total revenue):
+
+  
 ---
 
 ## 🛠️ Herramientas que utilizo
