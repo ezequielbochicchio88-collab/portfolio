@@ -243,7 +243,11 @@ Intención: Identificar los modelos más rentables, no solo los más vendidos.
 Resultado:
 - Los 5 modelos más rentables (por total de ingresos) son:
 
-(visualización pendiente)
+7 Series
+3 Series
+I8
+X1
+5 Series
 
 3️⃣ Región con mayor porcentaje de ventas totales
 
