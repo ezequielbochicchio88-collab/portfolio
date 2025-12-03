@@ -229,6 +229,7 @@ Se aplican técnicas de limpieza y transformación de datos mediante el uso de P
 **3. Análisis en Google BigQuery**
 
 🏁 I. Rendimiento General de Ventas
+
 1️⃣ Evolución del volumen total de ventas
 
 Intención: Analizar tendencias anuales y detectar años de crecimiento o caída.
@@ -256,6 +257,7 @@ Resultado:
 - Aunque el volumen de ventas es relativamente homogéneo entre regiones, Asia lidera con cerca del 17% del total global.
 
 🌍 II. Análisis Geográfico
+
 4️⃣ Región más rentable por tipo de combustible
 
 Intención: Evaluar qué combustibles funcionan mejor en cada mercado.
@@ -277,6 +279,7 @@ Resultado:
 - Performance: Asia
 
 ⚙️ III. Producto y Segmentación
+
 7️⃣ Modelos dominantes en cada segmento de ventas (“High”, “Medium”, “Low”)
 
 Intención: Identificar qué productos lideran cada nivel comercial.
@@ -296,6 +299,7 @@ Resultado:
 - Los vehículos con motores grandes muestran el mayor volumen de ventas promedio y los precios más altos, aunque en menor cantidad dentro del dataset.
 
 ⛽ IV. Tendencias por Tipo de Combustible
+
 🔟 Combustibles con mayor crecimiento de participación
 
 Intención: Analizar la transición hacia híbridos o eléctricos.
@@ -310,6 +314,7 @@ Resultado:
 - La combinación BMW 7 Series Híbrido es la que mayor nivel de ingresos genera a nivel global.
 
 🧩 VI. Análisis Combinado y Avanzado
+
 15️⃣ Regiones o modelos con señales de saturación
 
 Intención: Detectar mercados maduros o productos en declive.
@@ -317,6 +322,7 @@ Resultado:
 - El top 5 de combinaciones modelo/región con ventas decrecientes muestra señales de saturación, indicando posibles mercados maduros o productos a revisar.
 
 🧠 BONUS — Preguntas Estratégicas Tipo Business Case Real
+
 1️⃣ Inversión publicitaria por región y tipo de combustible
 
 Análisis:
@@ -345,7 +351,7 @@ Este análisis integral de BMW (2010–2024) combina tendencias de ventas, renta
 
 **Ver más:**  
 ### 📂 Detalle del proyecto
-- 📊 [Dataset (CSV)](hotel_booking.csv)
+- 📊 [Consultas SQL](SQL.txt)
   
 ---
 
