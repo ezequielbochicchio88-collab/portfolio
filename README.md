@@ -276,11 +276,6 @@ Resultado:
 - Large: Asia
 - Performance: Asia
 
-6️⃣ Color de automóvil más vendido por continente
-
-Intención: Conocer preferencias estéticas regionales.
-Resultado: (visualización pendiente)
-
 ⚙️ III. Producto y Segmentación
 7️⃣ Modelos dominantes en cada segmento de ventas (“High”, “Medium”, “Low”)
 
@@ -314,18 +309,7 @@ Intención: Detectar oportunidades comerciales (p. ej., híbridos de alta gama).
 Resultado:
 - La combinación BMW 7 Series Híbrido es la que mayor nivel de ingresos genera a nivel global.
 
-📈 V. Desempeño Financiero
-12️⃣ Modelos con mayor precio promedio por litro de motor
-
-Intención: Medir la eficiencia económica del tamaño del motor.
-Resultado: (visualización pendiente)
-
 🧩 VI. Análisis Combinado y Avanzado
-14️⃣ Modelos con ventas altas pese a precios superiores al promedio
-
-Intención: Detectar productos de alta demanda que no dependen de descuentos.
-Resultado: (visualización pendiente)
-
 15️⃣ Regiones o modelos con señales de saturación
 
 Intención: Detectar mercados maduros o productos en declive.
@@ -340,11 +324,6 @@ Análisis:
 - Asia: crecimiento sostenido tanto en ventas como en revenue → región prioritaria.
 - North America: crecimiento moderado en ventas, pero fuerte aumento en rentabilidad.
 - Combustibles: priorizar Híbridos, seguidos por Eléctricos.
-
-2️⃣ Modelos a discontinuar o reemplazar
-
-Análisis:
-Modelos con caídas continuas en ventas y rentabilidad en los últimos años. (visualización pendiente)
 
 3️⃣ Segmento de motor con mejor margen por unidad vendida
 
@@ -364,6 +343,9 @@ Este análisis integral de BMW (2010–2024) combina tendencias de ventas, renta
 - Establecer rangos de precio óptimos y segmentos de motor más rentables.
 - Guiar decisiones sobre innovación, marketing y discontinuación de producto.
 
+**Ver más:**  
+### 📂 Detalle del proyecto
+- 📊 [Dataset (CSV)](hotel_booking.csv)
   
 ---
 
