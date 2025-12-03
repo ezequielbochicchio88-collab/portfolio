@@ -1,0 +1,494 @@
+# Region
+
+WITH yearly_sales AS (
+  SELECT
+    region,
+    year,
+    SUM(sales_volume) AS total_sales_volume,
+    SUM(revenue_usd) AS total_revenue_usd
+  FROM 
+    `genial-stage-432712-t7.bmw_sales_analysis.bmw_sales`
+  WHERE year >= EXTRACT(YEAR FROM DATE_SUB(CURRENT_DATE(), INTERVAL 5 YEAR))
+  GROUP BY region, year
+),
+growth_calc AS (
+  SELECT
+    region,
+    MIN(year) OVER (PARTITION BY region) AS start_year,
+    MAX(year) OVER (PARTITION BY region) AS end_year,
+    FIRST_VALUE(total_sales_volume) OVER (PARTITION BY region ORDER BY year ASC) AS start_volume,
+    LAST_VALUE(total_sales_volume) OVER (PARTITION BY region ORDER BY year ASC ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS end_volume,
+    FIRST_VALUE(total_revenue_usd) OVER (PARTITION BY region ORDER BY year ASC) AS start_revenue,
+    LAST_VALUE(total_revenue_usd) OVER (PARTITION BY region ORDER BY year ASC ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS end_revenue
+  FROM yearly_sales
+)
+SELECT
+  region,
+  ANY_VALUE(start_year) AS start_year,
+  ANY_VALUE(end_year) AS end_year,
+  ROUND(100 * (MAX(end_volume) - MIN(start_volume)) / MIN(start_volume), 2) AS volume_growth_percent,
+  ROUND(100 * (MAX(end_revenue) - MIN(start_revenue)) / MIN(start_revenue), 2) AS revenue_growth_percent
+FROM growth_calc
+GROUP BY region
+ORDER BY revenue_growth_percent DESC;
+
+
+# Tipo de combustible
+
+WITH yearly_sales AS (
+  SELECT
+    fuel_type,
+    year,
+    SUM(sales_volume) AS total_sales_volume,
+    SUM(revenue_usd) AS total_revenue_usd
+  FROM 
+    `genial-stage-432712-t7.bmw_sales_analysis.bmw_sales`
+  WHERE year >= EXTRACT(YEAR FROM DATE_SUB(CURRENT_DATE(), INTERVAL 5 YEAR))
+  GROUP BY fuel_type, year
+),
+growth_calc AS (
+  SELECT
+    fuel_type,
+    MIN(year) OVER (PARTITION BY fuel_type) AS start_year,
+    MAX(year) OVER (PARTITION BY fuel_type) AS end_year,
+    FIRST_VALUE(total_sales_volume) OVER (PARTITION BY fuel_type ORDER BY year ASC) AS start_volume,
+    LAST_VALUE(total_sales_volume) OVER (PARTITION BY fuel_type ORDER BY year ASC ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS end_volume,
+    FIRST_VALUE(total_revenue_usd) OVER (PARTITION BY fuel_type ORDER BY year ASC) AS start_revenue,
+    LAST_VALUE(total_revenue_usd) OVER (PARTITION BY fuel_type ORDER BY year ASC ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS end_revenue
+  FROM yearly_sales
+)
+SELECT
+  fuel_type,
+  ANY_VALUE(start_year) AS start_year,
+  ANY_VALUE(end_year) AS end_year,
+  ROUND(100 * (MAX(end_volume) - MIN(start_volume)) / MIN(start_volume), 2) AS volume_growth_percent,
+  ROUND(100 * (MAX(end_revenue) - MIN(start_revenue)) / MIN(start_revenue), 2) AS revenue_growth_percent
+FROM growth_calc
+GROUP BY fuel_type
+ORDER BY revenue_growth_percent DESC;
+
+---------------------------------------------------------------------------
+SELECT 
+  engine_category,
+  ROUND(SUM(revenue_usd) / NULLIF(SUM(sales_volume), 0), 2) AS margin_per_unit_usd
+FROM 
+  `genial-stage-432712-t7.bmw_sales_analysis.bmw_sales`
+GROUP BY engine_category
+ORDER BY margin_per_unit_usd DESC;
+
+-----------------------------------------------------------------------------
+WITH yearly_sales AS (
+  SELECT
+    model,
+    year,
+    SUM(sales_volume) AS total_sales_volume,
+    SUM(revenue_usd) AS total_revenue_usd
+  FROM 
+    `genial-stage-432712-t7.bmw_sales_analysis.bmw_sales`
+  WHERE year >= EXTRACT(YEAR FROM DATE_SUB(CURRENT_DATE(), INTERVAL 5 YEAR))
+  GROUP BY model, year
+),
+growth_calc AS (
+  SELECT
+    model,
+    MIN(year) OVER (PARTITION BY model) AS start_year,
+    MAX(year) OVER (PARTITION BY model) AS end_year,
+    FIRST_VALUE(total_sales_volume) OVER (PARTITION BY model ORDER BY year ASC) AS start_volume,
+    LAST_VALUE(total_sales_volume) OVER (PARTITION BY model ORDER BY year ASC ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS end_volume,
+    FIRST_VALUE(total_revenue_usd) OVER (PARTITION BY model ORDER BY year ASC) AS start_revenue,
+    LAST_VALUE(total_revenue_usd) OVER (PARTITION BY model ORDER BY year ASC ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS end_revenue
+  FROM yearly_sales
+)
+SELECT
+  model,
+  ANY_VALUE(start_year) AS start_year,
+  ANY_VALUE(end_year) AS end_year,
+  ROUND(100 * (MAX(end_volume) - MIN(start_volume)) / MIN(start_volume), 2) AS volume_growth_percent,
+  ROUND(100 * (MAX(end_revenue) - MIN(start_revenue)) / MIN(start_revenue), 2) AS revenue_growth_percent
+FROM growth_calc
+GROUP BY model
+HAVING volume_growth_percent < 0 AND revenue_growth_percent < 0
+ORDER BY (volume_growth_percent + revenue_growth_percent) ASC
+LIMIT 5;
+
+------------------------------------------------------------------------------------------------
+SELECT
+  CASE 
+    WHEN price_usd < 30000 THEN 'Low (<30K)'
+    WHEN price_usd BETWEEN 30000 AND 50000 THEN 'Mid (30K-50K)'
+    WHEN price_usd BETWEEN 50000 AND 80000 THEN 'Upper-Mid (50K-80K)'
+    WHEN price_usd BETWEEN 80000 AND 120000 THEN 'Premium (80K-120K)'
+    ELSE 'Luxury (>120K)'
+  END AS price_range,
+  SUM(sales_volume) AS total_sales_volume,
+  ROUND(SUM(revenue_usd) / NULLIF(SUM(sales_volume), 0), 2) AS avg_price_per_unit
+FROM 
+  `genial-stage-432712-t7.bmw_sales_analysis.bmw_sales`
+GROUP BY price_range
+ORDER BY total_sales_volume DESC;
+
+--------------------------------------------------------------------------------------------------
+SELECT 
+  year,
+  FORMAT("%'.0f", CAST(SUM(sales_volume) AS FLOAT64)) AS total_sales_volume,
+  FORMAT("%'.0f", CAST(SUM(revenue_usd) AS FLOAT64)) AS total_revenue_usd
+FROM 
+  `genial-stage-432712-t7.bmw_sales_analysis.bmw_sales`
+GROUP BY 
+  year
+ORDER BY 
+  year ASC;
+  
+----------------------------------------------------------------------------------------------------
+SELECT 
+  model,
+  FORMAT("%'.0f", CAST(SUM(revenue_usd) AS FLOAT64)) AS total_revenue_usd,
+  FORMAT("%'.0f", CAST(SUM(sales_volume) AS FLOAT64)) AS total_sales_volume
+FROM 
+  `genial-stage-432712-t7.bmw_sales_analysis.bmw_sales`
+GROUP BY 
+  model
+ORDER BY 
+  total_revenue_usd desc
+  Limit 5;
+
+------------------------------------------------------------------------------------------------------
+SELECT 
+  region,
+  FORMAT("%'.0f", CAST(SUM(sales_volume) AS FLOAT64)) AS total_sales_volume,
+  CONCAT(ROUND(100 * SUM(sales_volume) / SUM(SUM(sales_volume)) OVER (), 2), '%') AS market_share_percent
+FROM 
+  `genial-stage-432712-t7.bmw_sales_analysis.bmw_sales`
+GROUP BY 
+  region
+ORDER BY 
+  CAST(SUM(sales_volume) AS FLOAT64) DESC;
+
+-------------------------------------------------------------------------------------------------------
+SELECT 
+  model,
+  sales_classification,
+  FORMAT("%'.0f", CAST(total_sales_volume AS FLOAT64)) AS total_sales_volume
+FROM (
+  SELECT
+    model,
+    sales_classification,
+    SUM(sales_volume) AS total_sales_volume,
+    ROW_NUMBER() OVER (PARTITION BY sales_classification ORDER BY SUM(sales_volume) DESC) AS rank_classi
+  FROM 
+    `genial-stage-432712-t7.bmw_sales_analysis.bmw_sales`
+  GROUP BY 
+    model, sales_classification
+)
+WHERE rank_classi = 1
+ORDER BY sales_classification asc;
+
+---------------------------------------------------------------------------------------------------------
+SELECT 
+    transmission,
+    count(transmission) as q_transmission,
+    FORMAT("%'.0f", CAST(AVG(price_usd) AS FLOAT64)) AS avg_price_usd,
+    FORMAT("%'.0f", CAST(AVG(sales_volume) AS FLOAT64)) AS avg_sales_volume
+FROM 
+    `genial-stage-432712-t7.bmw_sales_analysis.bmw_sales`
+GROUP BY 
+transmission
+order by avg_price_usd, avg_sales_volume desc
+;
+
+SELECT 
+    region,
+    transmission,
+    count(transmission) as q_transmission,
+    FORMAT("%'.0f", CAST(AVG(price_usd) AS FLOAT64)) AS avg_price_usd,
+    FORMAT("%'.0f", CAST(AVG(sales_volume) AS FLOAT64)) AS avg_sales_volume
+FROM 
+    `genial-stage-432712-t7.bmw_sales_analysis.bmw_sales`
+GROUP BY 
+region, transmission
+order by avg_sales_volume desc
+;
+
+---------------------------------------------------------------------------------------------------------
+# Participación de mercado por tipo de combustible y año
+
+WITH fuel_share AS (
+  SELECT 
+    year,
+    fuel_type,
+    SUM(sales_volume) AS total_sales_volume,
+    ROUND(100 * SUM(sales_volume) / SUM(SUM(sales_volume)) OVER (PARTITION BY year), 2) AS market_share_percent
+  FROM 
+    `genial-stage-432712-t7.bmw_sales_analysis.bmw_sales`
+  GROUP BY 
+    year, fuel_type
+)
+SELECT 
+  year,
+  fuel_type,
+  total_sales_volume,
+  market_share_percent
+FROM fuel_share
+ORDER BY year ASC, market_share_percent DESC;
+
+
+# Ver cuál ha ganado más participación entre años
+
+WITH fuel_share AS (
+  SELECT 
+    year,
+    fuel_type,
+    SUM(sales_volume) AS total_sales_volume,
+    ROUND(100 * SUM(sales_volume) / SUM(SUM(sales_volume)) OVER (PARTITION BY year), 2) AS market_share_percent
+  FROM 
+    `genial-stage-432712-t7.bmw_sales_analysis.bmw_sales`
+  GROUP BY 
+    year, fuel_type
+),
+fuel_change AS (
+  SELECT
+    fuel_type,
+    year,
+    market_share_percent,
+    market_share_percent - LAG(market_share_percent) OVER (PARTITION BY fuel_type ORDER BY year) AS change_vs_last_year
+  FROM fuel_share
+)
+SELECT 
+  year,
+  fuel_type,
+  market_share_percent,
+  ROUND(change_vs_last_year, 2) AS yoy_change_percent
+FROM 
+  fuel_change
+ORDER BY 
+  year ASC, yoy_change_percent DESC;
+
+
+# Identificar el combustible que más ha ganado participación
+
+WITH fuel_share AS (
+  SELECT 
+    year,
+    fuel_type,
+    ROUND(100 * SUM(sales_volume) / SUM(SUM(sales_volume)) OVER (PARTITION BY year), 2) AS market_share_percent
+  FROM 
+    `genial-stage-432712-t7.bmw_sales_analysis.bmw_sales`
+  GROUP BY 
+    year, fuel_type
+),
+first_last AS (
+  SELECT
+    fuel_type,
+    FIRST_VALUE(market_share_percent) OVER (PARTITION BY fuel_type ORDER BY year) AS first_year_share,
+    LAST_VALUE(market_share_percent) OVER (PARTITION BY fuel_type ORDER BY year ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_year_share
+  FROM fuel_share
+)
+SELECT 
+  fuel_type,
+  ROUND(AVG(last_year_share - first_year_share), 2) AS total_change_percent
+FROM first_last
+GROUP BY fuel_type
+ORDER BY total_change_percent DESC;
+
+
+# Aumento del volumen absoluto
+
+WITH sales_by_fuel AS (
+  SELECT
+    fuel_type,
+    SUM(CASE WHEN year = (SELECT MIN(year) FROM `genial-stage-432712-t7.bmw_sales_analysis.bmw_sales`) THEN sales_volume END) AS first_year_volume,
+    SUM(CASE WHEN year = (SELECT MAX(year) FROM `genial-stage-432712-t7.bmw_sales_analysis.bmw_sales`) THEN sales_volume END) AS last_year_volume
+  FROM 
+    `genial-stage-432712-t7.bmw_sales_analysis.bmw_sales`
+  GROUP BY fuel_type
+)
+SELECT 
+  fuel_type,
+  first_year_volume,
+  last_year_volume,
+  ROUND(((last_year_volume - first_year_volume) / first_year_volume) * 100, 2) AS growth_percent
+FROM sales_by_fuel
+ORDER BY growth_percent DESC;
+
+----------------------------------------------------------------------------------------------------------------------------
+SELECT 
+  region,
+  fuel_type,
+  FORMAT("%'.0f", CAST(SUM(revenue_usd) AS FLOAT64)) AS total_revenue_usd,
+  FORMAT("%'.0f", CAST(AVG(price_usd) AS FLOAT64)) AS avg_price_usd
+FROM 
+  `genial-stage-432712-t7.bmw_sales_analysis.bmw_sales`
+WHERE fuel_type = "Electric"
+GROUP BY 
+  region, fuel_type
+ORDER BY 
+  total_revenue_usd desc;
+ 
+ --------------------------------------------------------------------------------------------------------------------------
+ SELECT 
+  region,
+  engine_category,
+  FORMAT("%'.0f", CAST(AVG(price_usd) AS FLOAT64)) AS avg_price_usd
+FROM 
+  `genial-stage-432712-t7.bmw_sales_analysis.bmw_sales`
+WHERE engine_category = "Performance"
+GROUP BY 
+  region, engine_category
+ORDER BY 
+  avg_price_usd desc;
+ 
+ --------------------------------------------------------------------------------------------------------------------------
+ SELECT 
+  region,
+  color,
+  FORMAT("%'.0f", CAST(total_sales_volume AS FLOAT64)) AS total_sales_volume
+FROM (
+  SELECT
+    region,
+    color,
+    SUM(sales_volume) AS total_sales_volume,
+    ROW_NUMBER() OVER (PARTITION BY region ORDER BY SUM(sales_volume) DESC) AS rank_color
+  FROM 
+    `genial-stage-432712-t7.bmw_sales_analysis.bmw_sales`
+  GROUP BY 
+    region, color
+)
+WHERE rank_color = 1
+ORDER BY region asc;
+-----------------------------------------------------------------------------------------------------------------------------
+SELECT 
+  model,
+  fuel_type,
+  FORMAT("%'.0f", CAST(sum(revenue_usd) AS FLOAT64)) AS total_revenue_usd,
+  FORMAT("%'.0f", CAST(sum(sales_volume) AS FLOAT64)) AS total_sales_volume
+FROM 
+  `genial-stage-432712-t7.bmw_sales_analysis.bmw_sales`
+GROUP BY 
+  model, fuel_type
+ORDER BY 
+  total_revenue_usd desc
+  ;
+-----------------------------------------------------------------------------------------------------------------------------
+SELECT 
+  model,
+  FORMAT("%'.0f", CAST(avg(price_per_liter) AS FLOAT64)) AS avg_price_per_liter,
+FROM 
+  `genial-stage-432712-t7.bmw_sales_analysis.bmw_sales`
+GROUP BY 
+  model
+ORDER BY 
+  avg_price_per_liter desc
+Limit 5
+  ;
+----------------------------------------------------------------------------------------------------------------------------
+WITH avg_price AS (
+  SELECT AVG(price_usd) AS global_avg_price
+  FROM `genial-stage-432712-t7.bmw_sales_analysis.bmw_sales`
+)
+SELECT 
+  model,
+  ROUND(AVG(price_usd), 2) AS avg_price_usd,
+  ROUND(avg_price.global_avg_price, 2) AS global_avg_price,
+  SUM(sales_volume) AS total_sales_volume,
+  ROUND(SUM(revenue_usd), 2) AS total_revenue_usd
+FROM 
+  `genial-stage-432712-t7.bmw_sales_analysis.bmw_sales`,
+  avg_price
+GROUP BY 
+  model, global_avg_price
+HAVING 
+  AVG(price_usd) > global_avg_price
+ORDER BY 
+  total_sales_volume DESC;
+
+
+# versión 2
+
+WITH avg_price AS (
+  SELECT AVG(price_usd) AS global_avg_price
+  FROM `genial-stage-432712-t7.bmw_sales_analysis.bmw_sales`
+)
+SELECT 
+  model,
+  FORMAT("%'.0f", CAST(AVG(price_usd) AS FLOAT64)) AS avg_price_usd,
+  ROUND(avg_price.global_avg_price, 2) AS global_avg_price,
+  FORMAT("%'.0f", CAST(SUM(sales_volume) AS FLOAT64)) AS total_sales_volume,
+  FORMAT("%'.0f", CAST(SUM(revenue_usd) AS FLOAT64)) AS total_revenue_usd
+FROM 
+  `genial-stage-432712-t7.bmw_sales_analysis.bmw_sales`,
+  avg_price
+GROUP BY 
+  model, global_avg_price
+HAVING 
+  AVG(price_usd) > global_avg_price
+ORDER BY 
+  SUM(sales_volume) DESC;
+
+---------------------------------------------------------------------------------------------------------------
+WITH yearly_sales AS (
+  -- 1️⃣ Ventas totales por región, modelo y año
+  SELECT
+    region,
+    model,
+    year,
+    SUM(sales_volume) AS total_sales_volume
+  FROM 
+    `genial-stage-432712-t7.bmw_sales_analysis.bmw_sales`
+  GROUP BY 
+    region, model, year
+),
+yearly_change AS (
+  -- 2️⃣ Diferencia absoluta y % vs año anterior
+  SELECT
+    region,
+    model,
+    year,
+    total_sales_volume,
+    LAG(total_sales_volume) OVER (PARTITION BY region, model ORDER BY year) AS prev_year_sales,
+    ROUND(
+      100 * (total_sales_volume - LAG(total_sales_volume) OVER (PARTITION BY region, model ORDER BY year)) /
+      LAG(total_sales_volume) OVER (PARTITION BY region, model ORDER BY year),
+      2
+    ) AS yoy_change_percent
+  FROM yearly_sales
+),
+decline_flag AS (
+  -- 3️⃣ Marcar los años con caída (ventas menores al año anterior)
+  SELECT
+    region,
+    model,
+    year,
+    total_sales_volume,
+    yoy_change_percent,
+    CASE WHEN yoy_change_percent < 0 THEN 1 ELSE 0 END AS decline_year
+  FROM yearly_change
+),
+consecutive_decline AS (
+  -- 4️⃣ Detectar caídas consecutivas (2 años seguidos)
+  SELECT
+    region,
+    model,
+    year,
+    total_sales_volume,
+    yoy_change_percent,
+    decline_year,
+    decline_year 
+      + LAG(decline_year) OVER (PARTITION BY region, model ORDER BY year) AS decline_streak
+  FROM decline_flag
+)
+-- 5️⃣ Seleccionar solo los casos con 2 caídas consecutivas
+SELECT
+  region,
+  model,
+  year,
+  FORMAT("%'.0f", CAST(total_sales_volume AS FLOAT64)) AS total_sales_volume,
+  CONCAT(
+    CASE WHEN yoy_change_percent > 0 THEN '+' ELSE '' END,
+    CAST(yoy_change_percent AS STRING),
+    '%'
+  ) AS yoy_change_percent,
+  CASE WHEN decline_streak = 2 THEN 'Saturación (2 años en caída)' ELSE NULL END AS status
+FROM consecutive_decline
+WHERE decline_streak = 2
+ORDER BY yoy_change_percent desc
+limit 5;
